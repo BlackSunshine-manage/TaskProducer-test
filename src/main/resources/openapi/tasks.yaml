@@ -47,12 +47,12 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Task'
+                  $ref: '#/components/schemas/PortableTaskImpl'
             application/xml:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Task'
+                  $ref: '#/components/schemas/PortableTaskImpl'
         '400':
           description: Invalid status value
       security:
@@ -61,8 +61,9 @@ paths:
 
 components:
   schemas:
-    Task:
+    PortableTaskImpl:
       type: object
+      x-implements: ['corp.testing.example.core.task.PortableTask']
       properties:
         id:
           type: integer
@@ -90,19 +91,19 @@ components:
       xml:
         name: '##default'
   requestBodies:
-    Tasks:
+    PortableTasks:
       description: List of task object
       content:
         application/json:
           schema:
             type: array
             items:
-              $ref: '#/components/schemas/Task'
+              $ref: '#/components/schemas/PortableTaskImpl'
         application/xml:
           schema:
             type: array
             items:
-              $ref: '#/components/schemas/Task'
+              $ref: '#/components/schemas/PortableTaskImpl'
   # securitySchemes:
   #   petstore_auth:
   #     type: oauth2
